@@ -1,0 +1,6 @@
+numpy
+pillow
+scikit-learn
+imbalanced-learn
+streamlit
+joblib
