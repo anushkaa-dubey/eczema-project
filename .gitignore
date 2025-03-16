@@ -1,0 +1,61 @@
+# ==========================
+# Python Specific
+# ==========================
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.log
+
+# ==========================
+# Virtual Environment Folders
+# ==========================
+venv/
+env/
+
+# ==========================
+# Dataset and Model Files
+# ==========================
+dataset/
+*.pkl
+*.h5
+*.joblib
+
+# ==========================
+# Streamlit & VS Code Settings
+# ==========================
+.vscode/
+*.db
+*.sqlite3
+
+# ==========================
+# Cursor Files (Extension)
+# ==========================
+.cursor/
+.cursor-config/
+*.cursor
+
+# ==========================
+# OS / Misc Files
+# ==========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================
+# Jupyter Notebooks Checkpoints (Optional)
+# ==========================
+.ipynb_checkpoints/
+
+# ==========================
+# Node / React (in case you added frontend)
+# ==========================
+node_modules/
+dist/
+build/
+
+# ==========================
+# Environment Variables (Safety!)
+# ==========================
+.env
+.env.local
