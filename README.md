@@ -109,4 +109,3 @@ Make sure you have the following installed (or install them via `pip install -r 
 
 
 
-Let me know if you want me to fill in **repo links**, **team names**, or anything personal before you paste it!
