@@ -19,6 +19,7 @@ def load_images_from_folder(folder, label, img_size=(32, 32)):
             labels.append(label)
         except Exception as e:
             print(f"Failed to load {img_path}: {e}")
+    print(labels)
     return images, labels
 
 # Load datasets
@@ -44,8 +45,11 @@ X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, te
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
+y_predict = model.predict(X_test)
+print(y_predict.shape)
+print(y_test.shape)
 # Evaluate model
-score = model.score(X_test, y_test)
+score = model.score(y_predict, y_test)
 print(f"Test Accuracy: {score * 100:.2f}%")
 
 # Save model
