@@ -2,12 +2,28 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 import joblib
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 
-# Load trained model
-model = joblib.load('eczema_model.pkl')
+# Load all trained models
+try:
+    models = {
+        "Random Forest": joblib.load('random_forest_model.pkl'),
+        "SVM": joblib.load('svm_model.pkl'),
+        "K-Nearest Neighbors": joblib.load('k-nearest_neighbors_model.pkl'),
+        "Neural Network (MLP)": joblib.load('neural_network_(mlp)_model.pkl'),
+        "CNN": load_model('cnn_model.h5')
+    }
+except Exception as e:
+    st.error(f"Error loading models: {e}")
+    st.stop()
 
-# Title
-st.title("Eczema Detection App")
+# Title and description
+st.title("Advanced Eczema Detection App")
+st.markdown("""
+This app uses multiple machine learning models to detect eczema in skin images.
+Upload an image to see predictions from different models.
+""")
 
 # File uploader
 uploaded_file = st.file_uploader("Upload an image of skin", type=['jpg', 'jpeg', 'png'])
@@ -15,19 +31,48 @@ uploaded_file = st.file_uploader("Upload an image of skin", type=['jpg', 'jpeg',
 if uploaded_file is not None:
     # Display uploaded image
     st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
-
-    # Preprocess the image (Must match training!)
-    img = Image.open(uploaded_file).convert('RGB')
-    img = img.resize((32, 32))  # Same size as training!
-    img_array = np.array(img).flatten().reshape(1, -1)
-
-    # Make prediction
-    prediction_proba = model.predict_proba(img_array)[0]
-    prediction = model.predict(img_array)[0]
-
-    # Display result
-    st.subheader("Prediction Result:")
-    if prediction == 1:
-        st.error(f"⚠️ Eczema Detected with {prediction_proba[1]*100:.2f}% probability")
-    else:
-        st.success(f"✅ Normal Skin with {prediction_proba[0]*100:.2f}% probability")
+    
+    try:
+        # Preprocess the image
+        img = Image.open(uploaded_file).convert('RGB')
+        img = img.resize((128, 128))  # Match training size
+        
+        # Prepare image for traditional models
+        img_array_flat = np.array(img).flatten().reshape(1, -1)
+        
+        # Prepare image for CNN (normalized)
+        img_array_cnn = (np.array(img) / 255.0).reshape(1, 128, 128, 3)
+        
+        # Create tabs for each model
+        tabs = st.tabs([model_name for model_name in models.keys()])
+        
+        for tab, (model_name, model) in zip(tabs, models.items()):
+            with tab:
+                if model_name == "CNN":
+                    # CNN prediction
+                    prediction_proba = model.predict(img_array_cnn)[0][0]
+                    prediction = 1 if prediction_proba > 0.5 else 0
+                    eczema_prob = prediction_proba if prediction == 1 else 1 - prediction_proba
+                else:
+                    # Traditional model prediction
+                    prediction_proba = model.predict_proba(img_array_flat)[0]
+                    prediction = model.predict(img_array_flat)[0]
+                    eczema_prob = prediction_proba[1] if prediction == 1 else prediction_proba[0]
+                
+                # Display result
+                if prediction == 1:
+                    st.error(f"⚠️ Eczema Detected")
+                    st.metric("Confidence", f"{eczema_prob*100:.2f}%")
+                else:
+                    st.success(f"✅ Normal Skin")
+                    st.metric("Confidence", f"{eczema_prob*100:.2f}%")
+                
+                # Show probability distribution
+                prob_dist = {
+                    'Normal': (1 - eczema_prob) if prediction == 1 else eczema_prob,
+                    'Eczema': eczema_prob if prediction == 1 else (1 - eczema_prob)
+                }
+                st.bar_chart(prob_dist)
+                
+    except Exception as e:
+        st.error(f"Error processing image: {e}")
