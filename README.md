@@ -4,6 +4,8 @@ ECZEMA PROJECT
 A simple machine learning-powered web app to detect **eczema** from skin images.
 
 ---
+## DATA SET DRIVE LINK
+https://drive.google.com/drive/folders/1hjXKMEu9vwkfCY4uuha3Ewb5ueQtQ01x?usp=drive_link
 
 ## 🚀 How it Works
 - We trained a **Support Vector Machine (SVM)** model on labeled images of **eczema** and **normal** skin.
