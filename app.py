@@ -5,6 +5,9 @@ import joblib
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
+# Constants (MUST match training)
+TRAIN_IMG_SIZE = (64, 64)  # Changed from 128 to match training
+
 # Load all trained models
 try:
     models = {
@@ -12,14 +15,14 @@ try:
         "SVM": joblib.load('svm_model.pkl'),
         "K-Nearest Neighbors": joblib.load('k-nearest_neighbors_model.pkl'),
         "Neural Network (MLP)": joblib.load('neural_network_(mlp)_model.pkl'),
-        "CNN": load_model('cnn_model.h5')
+        "CNN": load_model('cnn_model.keras')  # Changed from .h5 to .keras
     }
 except Exception as e:
     st.error(f"Error loading models: {e}")
     st.stop()
 
-# Title and description
-st.title("Advanced Eczema Detection App")
+# Title 
+st.title("Eczema Detection ")
 st.markdown("""
 This app uses multiple machine learning models to detect eczema in skin images.
 Upload an image to see predictions from different models.
@@ -33,15 +36,15 @@ if uploaded_file is not None:
     st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
     
     try:
-        # Preprocess the image
+        # Preprocess the image (MUST match training preprocessing)
         img = Image.open(uploaded_file).convert('RGB')
-        img = img.resize((128, 128))  # Match training size
+        img = img.resize(TRAIN_IMG_SIZE)  # Changed to 64x64
         
         # Prepare image for traditional models
         img_array_flat = np.array(img).flatten().reshape(1, -1)
         
         # Prepare image for CNN (normalized)
-        img_array_cnn = (np.array(img) / 255.0).reshape(1, 128, 128, 3)
+        img_array_cnn = (np.array(img) / 255.0).reshape(1, *TRAIN_IMG_SIZE, 3)
         
         # Create tabs for each model
         tabs = st.tabs([model_name for model_name in models.keys()])
@@ -59,7 +62,7 @@ if uploaded_file is not None:
                     prediction = model.predict(img_array_flat)[0]
                     eczema_prob = prediction_proba[1] if prediction == 1 else prediction_proba[0]
                 
-                # Display result
+                #  result
                 if prediction == 1:
                     st.error(f"⚠️ Eczema Detected")
                     st.metric("Confidence", f"{eczema_prob*100:.2f}%")
@@ -67,7 +70,7 @@ if uploaded_file is not None:
                     st.success(f"✅ Normal Skin")
                     st.metric("Confidence", f"{eczema_prob*100:.2f}%")
                 
-                # Show probability distribution
+                # probability distribution
                 prob_dist = {
                     'Normal': (1 - eczema_prob) if prediction == 1 else eczema_prob,
                     'Eczema': eczema_prob if prediction == 1 else (1 - eczema_prob)

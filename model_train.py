@@ -1,3 +1,4 @@
+#import packages
 import os
 import numpy as np
 from PIL import Image
@@ -13,10 +14,10 @@ import joblib
 from tensorflow.keras import layers, models
 import matplotlib.pyplot as plt
 
-# Constants (optimized for speed/performance balance)
+# Constants
 IMG_SIZE = (64, 64)  # Reduced from 128x128 for faster training
 BATCH_SIZE = 32
-EPOCHS = 5           # Kept low for quick training (originally 2)
+EPOCHS = 5           # Kept low for quick training ,later we will take it as 32
 
 def load_images_from_folder(folder, label):
     images = []
