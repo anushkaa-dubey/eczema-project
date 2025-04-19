@@ -1,11 +1,12 @@
 
-#ECZEMA DETECTION PROJECT
+```markdown
+# 🧴 ECZEMA DETECTION PROJECT
 
 A simple machine learning-powered web app to detect **eczema** from skin images.
 
 ---
 
-##Dataset
+## 📁 Dataset
 
 **Download here:**  
 [Google Drive Dataset Link](https://drive.google.com/drive/folders/1hjXKMEu9vwkfCY4uuha3Ewb5ueQtQ01x?usp=drive_link)  
@@ -151,7 +152,6 @@ matplotlib
 Supervisior : Dr. Amit Kumar
 
 Created by a team of students exploring AI in medical imaging with limited resources — proving that even low-end hardware can still deliver smart solutions 💻❤️
-
----
-
 ```
+
+Let me know if you also want a logo, a badge (like "Built with ❤️ using Streamlit"), or deployment instructions (e.g., on Hugging Face or Heroku)!
