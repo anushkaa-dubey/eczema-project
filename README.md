@@ -1,6 +1,4 @@
-
-```markdown
-# 🧴 ECZEMA DETECTION PROJECT
+<h1>ECZEMA DETECTION PROJECT
 
 A simple machine learning-powered web app to detect **eczema** from skin images.
 
