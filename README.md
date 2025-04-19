@@ -1,14 +1,11 @@
 
----
-
-```markdown
-# 🧴 ECZEMA DETECTION PROJECT
+#ECZEMA DETECTION PROJECT
 
 A simple machine learning-powered web app to detect **eczema** from skin images.
 
 ---
 
-## 📁 Dataset
+##Dataset
 
 **Download here:**  
 [Google Drive Dataset Link](https://drive.google.com/drive/folders/1hjXKMEu9vwkfCY4uuha3Ewb5ueQtQ01x?usp=drive_link)  
