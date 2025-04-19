@@ -4,7 +4,6 @@
 
 A simple machine learning-powered web app to detect **eczema** from skin images.
 
----
 
 ## 📁 Dataset
 
@@ -14,7 +13,7 @@ Contains labeled skin images organized into:
 - `eczema/`
 - `normal/`
 
----
+
 
 ## 🚀 How It Works
 
@@ -42,7 +41,7 @@ eczema_project/
 └── .gitignore            # Version control exclusions
 ```
 
----
+
 
 ## 🤖 Models Used
 
