@@ -1,17 +1,30 @@
-ECZEMA PROJECT
 
+---
+
+```markdown
+# 🧴 ECZEMA DETECTION PROJECT
 
 A simple machine learning-powered web app to detect **eczema** from skin images.
 
 ---
-## DATA SET DRIVE LINK
-https://drive.google.com/drive/folders/1hjXKMEu9vwkfCY4uuha3Ewb5ueQtQ01x?usp=drive_link
 
-## 🚀 How it Works
-- We trained a **Support Vector Machine (SVM)** model on labeled images of **eczema** and **normal** skin.
-- Users can upload an image through a **Streamlit** web interface.
-- The app preprocesses the image and predicts whether the skin is **eczema-affected** or **normal**.
-- It shows the result on screen with a simple message.
+## 📁 Dataset
+
+**Download here:**  
+[Google Drive Dataset Link](https://drive.google.com/drive/folders/1hjXKMEu9vwkfCY4uuha3Ewb5ueQtQ01x?usp=drive_link)  
+Contains labeled skin images organized into:
+- `eczema/`
+- `normal/`
+
+---
+
+## 🚀 How It Works
+
+1. We trained a **Support Vector Machine (SVM)** model using labeled images of eczema and normal skin.
+2. The model is deployed in a **Streamlit** web app for interactive image-based prediction.
+3. Users upload a skin image.
+4. The app preprocesses the image and predicts whether it's **eczema** or **normal**.
+5. The result is displayed clearly on screen.
 
 ---
 
@@ -24,12 +37,28 @@ eczema_project/
 │   ├── eczema/
 │   └── normal/
 │
-├── model_train.py        # Trains the machine learning model (SVM)
-├── eczema_model.pkl      # Saved trained model
-├── app.py                # Streamlit app for user prediction
-├── requirements.txt      # Python dependencies
-└── .gitignore            # Files & folders to ignore in version control
+├── model_train.py        # Trains multiple ML models
+├── eczema_model.pkl      # Saved trained model (SVM)
+├── app.py                # Streamlit app for predictions
+├── requirements.txt      # Project dependencies
+└── .gitignore            # Version control exclusions
 ```
+
+---
+
+## 🤖 Models Used
+
+We trained and tested multiple models to identify the best performer:
+
+| Model                  | Description                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| **SVM**                | Best performance (~79.3% accuracy), used in deployed app                    |
+| **Random Forest**      | Robust ensemble model, good with imbalanced data                            |
+| **K-Nearest Neighbors**| Simple baseline model, less effective for image data                        |
+| **MLP (Neural Net)**   | Basic neural network with 2 hidden layers, decent performance               |
+| **CNN (Deep Learning)**| Custom CNN model trained with TensorFlow; limited due to hardware constraints |
+
+🔍 *Only SVM is used in the current version of the app, but other models are available for experimentation.*
 
 ---
 
@@ -41,7 +70,7 @@ git clone <your-repository-url>
 cd eczema_project
 ```
 
-### 2. Set up a virtual environment (optional but recommended)
+### 2. (Optional) Create a virtual environment
 ```bash
 python -m venv venv
 # On Windows
@@ -56,58 +85,75 @@ pip install -r requirements.txt
 ```
 
 ### 4. (Optional) Train the model from scratch
-> If you want to retrain the model with your own dataset:
 ```bash
 python model_train.py
 ```
-This will create a file called `eczema_model.pkl`.
+This will retrain all models and generate `eczema_model.pkl`.
 
-### 5. Run the Streamlit app
+### 5. Run the Streamlit web app
 ```bash
 streamlit run app.py
 ```
 
-### 6. Open the app in your browser
-- After running the above command, Streamlit will give you a **local URL** (e.g., `http://localhost:8501`).
-- Open it in your browser, upload an image, and see the prediction.
+### 6. Use the App
+Open the URL (e.g. http://localhost:8501) in your browser and:
+- Upload a skin image
+- Get instant prediction
+- Try with different images for testing
 
 ---
 
 ## ✅ Features
-- Classifies skin images as **eczema** or **normal**.
-- Easy-to-use web interface.
-- Model trained on sample dataset (works best with more data!).
+
+- 📷 Upload skin images to classify as **eczema** or **normal**
+- ⚙️ Trained on real image data
+- 💾 Multiple models tested, best selected
+- 🌐 Simple and responsive **Streamlit** web interface
 
 ---
 
-## ✅ Future Improvements
-- Use a **Convolutional Neural Network (CNN)** for better accuracy.
-- Collect a **larger and more diverse dataset**.
-- Improve the UI/UX of the web app.
-- Add **real-time camera input** support.
+## 🔮 Future Improvements
+
+- 🧠 Train deeper CNN models for better accuracy  
+- 📈 Add support for real-time camera input  
+- 🧬 Collect more diverse and larger dataset  
+- 🧪 Test with pre-trained models (e.g., ResNet, MobileNet)  
+- 🎨 Improve UI/UX of the web interface
 
 ---
 
 ## 🛠️ Tech Stack
-- Python
-- Scikit-learn
-- Streamlit
-- NumPy
-- Pillow (PIL)
+
+- Python  
+- Scikit-learn  
+- Streamlit  
+- NumPy  
+- Pillow (PIL)  
+- TensorFlow (for CNN training)
 
 ---
 
 ## 📂 Requirements
-Make sure you have the following installed (or install them via `pip install -r requirements.txt`):
-- numpy
-- pillow
-- scikit-learn
-- streamlit
-- joblib
+
+Make sure you have the following installed (or use the provided `requirements.txt`):
+
+```txt
+numpy
+pillow
+scikit-learn
+streamlit
+joblib
+tensorflow
+imblearn
+matplotlib
+```
 
 ---
 
+## 💡 Credits
+Supervisior : Dr. Amit Kumar
+Created by a team of students exploring AI in medical imaging with limited resources — proving that even low-end hardware can still deliver smart solutions 💻❤️
+
 ---
 
-
-
+```
