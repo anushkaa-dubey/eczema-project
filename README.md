@@ -148,7 +148,5 @@ matplotlib
 ## 💡 Credits
 Supervisior : Dr. Amit Kumar
 
-Created by a team of students exploring AI in medical imaging with limited resources — proving that even low-end hardware can still deliver smart solutions 💻❤️
+Created by a team of students exploring AI in medical imaging with limited resources — proving that even low-end hardware can still deliver smart solutions 
 ```
-
-Let me know if you also want a logo, a badge (like "Built with ❤️ using Streamlit"), or deployment instructions (e.g., on Hugging Face or Heroku)!
