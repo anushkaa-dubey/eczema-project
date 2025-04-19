@@ -152,6 +152,7 @@ matplotlib
 
 ## 💡 Credits
 Supervisior : Dr. Amit Kumar
+
 Created by a team of students exploring AI in medical imaging with limited resources — proving that even low-end hardware can still deliver smart solutions 💻❤️
 
 ---
