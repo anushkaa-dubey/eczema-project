@@ -50,7 +50,7 @@ def create_improved_cnn_model():
         metrics=['accuracy']
     )
     return model
-
+#traditional models 
 def train_and_evaluate_models(X_train, X_test, y_train, y_test):
     X_train_flat = X_train.reshape(X_train.shape[0], -1)
     X_test_flat = X_test.reshape(X_test.shape[0], -1)
@@ -79,6 +79,8 @@ def train_and_evaluate_models(X_train, X_test, y_train, y_test):
         joblib.dump(model, f'{name.lower().replace(" ", "_")}_model.pkl')
     
     return results
+
+#deep learning cnn model
 
 def train_cnn(X_train, X_test, y_train, y_test):
     print("\nTraining Improved CNN Model...")
